@@ -17,8 +17,8 @@ TASK = {
         "If different fragments refer to different entities with the same name, write separate answer for each entity."
     ),
     'Request': 'Do what you are asked to do with the provided text.',
-    'Summary': 'Make a summary with the provided text.',
-    'FAQ': 'Make a FAQ with the provided text.',
+    'Summary': 'Make an extended summary with the provided text.',
+    'FAQ': 'Make 10 FAQ with the provided text.',
 }
 
 HYDE = "Write an example answer to the following question. Don't write a generic answer, just assume everything that is not known."
