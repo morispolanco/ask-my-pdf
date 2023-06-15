@@ -7,18 +7,15 @@ TASK = {
 			"Answer the question truthfully based on the text below. "
 			"Include verbatim quote and a comment where to find it in the text (page number). "
 			#"After the quote write a step by step explanation in a new paragraph. "
-			"After the quote write a step by step explanation. "
-			"Use bullet points. "
+			"After the quote, make a comment as a knowledgeable person would. "
 			#"After that try to rephrase the original question so it might give better results. " 
 		),
 	'v5': (
 			"Answer the question truthfully based on the text below. "
 			"Include at least one verbatim quote (marked with quotation marks) and a comment where to find it in the text (ie name of the section and page number). "
 			"Use ellipsis in the quote to omit irrelevant parts of the quote. "
-			"After the quote write (in the new paragraph) a step by step explanation to be sure we have the right answer "
-			"(use bullet-points in separate lines)" #, adjust the language for a young reader). "
-			"After the explanation check if the Answer is consistent with the Context and doesn't require external knowledge. "
-			"In a new line write 'SELF-CHECK OK' if the check was successful and 'SELF-CHECK FAILED' if it failed. " 
+			"After the quote, compare this opinion with what the Austrian School of Economics theorists (especially Ludwig von Mises) would think. "
+			
 		),
 	'v4':
 		"Answer the question truthfully based on the text below. " \
