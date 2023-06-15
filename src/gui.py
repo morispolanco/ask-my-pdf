@@ -69,11 +69,8 @@ def ui_info():
 	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
-		Thank you for your interest in my application.
-		Please be aware that this is only a Proof of Concept system
-		and may contain bugs or unfinished features.
-		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
-		on Twitter for news and updates.
+		This is an adaptation of the original work by [Maciej Obarski](https://www.linkedin.com/in/mobarski/), produced for the Instituto Fe y Libertad by Moris Polanco. 
+		The objective is to provide researchers with a time-saving resource. Some indications have been adapted to the interests of the research community in this topic.
 		""")
 	ui_spacer(1)
 	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
