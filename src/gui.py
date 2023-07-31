@@ -8,10 +8,7 @@ segment_identifier = "Your Segment Identifier"  # Reemplaza "Your Segment Identi
 # Configurar el título de la página con el identificador de segmento ingresado por el usuario
 st.set_page_config(layout='centered', page_title=f'{app_name} {__version__} | {segment_identifier}')
 
-
 # BOILERPLATE
-import streamlit as st
-st.set_page_config(layout='centered', page_title=f'{app_name} {__version__} | {segment_identifier}')  # Added the segment identifier here.
 ss = st.session_state
 if 'debug' not in ss: ss['debug'] = {}
 import css
@@ -19,6 +16,9 @@ st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 header1 = st.empty() # for errors / messages
 header2 = st.empty() # for errors / messages
 header3 = st.empty() # for errors / messages
+
+# Resto del código...
+
 
 # IMPORTS
 
