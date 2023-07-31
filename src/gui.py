@@ -303,6 +303,10 @@ def output_add(q,a):
 with st.sidebar:
 	ui_info()
 	ui_spacer(2)
+
+	# Pedir al usuario que ingrese el identificador de segmento
+	segment_identifier = st.text_input("Identificador de segmento", "Ingrese su identificador aquí")
+
 	with st.expander('advanced'):
 		ui_show_debug()
 		b_clear()
@@ -316,6 +320,11 @@ with st.sidebar:
 		ui_task_template()
 		ui_task()
 		ui_hyde_prompt()
+
+# Configurar el título de la página con el identificador de segmento ingresado por el usuario
+st.set_page_config(layout='centered', page_title=f'{app_name} {__version__} | {segment_identifier}')
+ss = st.session_state
+
 
 ui_api_key()
 ui_pdf_file()
