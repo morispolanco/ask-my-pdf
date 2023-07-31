@@ -1,6 +1,8 @@
+# Importar streamlit primero
+import streamlit as st
+
 # Configurar el título de la página con el identificador de segmento ingresado por el usuario
 st.set_page_config(layout='centered', page_title=f'{app_name} {__version__} | {segment_identifier}')
-ss = st.session_state
 
 __version__ = "0.4.8.3"
 app_name = "Ask my PDF"
