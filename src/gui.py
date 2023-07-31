@@ -1,11 +1,11 @@
 __version__ = "0.4.8.3"
 app_name = "Ask my PDF"
+segment_identifier = "Your Segment Identifier"  # Replace "Your Segment Identifier" with the actual segment identifier.
 
 
 # BOILERPLATE
-
 import streamlit as st
-st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
+st.set_page_config(layout='centered', page_title=f'{app_name} {__version__} | {segment_identifier}')  # Added the segment identifier here.
 ss = st.session_state
 if 'debug' not in ss: ss['debug'] = {}
 import css
