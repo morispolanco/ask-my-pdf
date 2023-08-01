@@ -3,14 +3,10 @@ import streamlit as st
 
 __version__ = "0.4.8.3"
 app_name = "Ask my PDF"
-segment_identifier = "Your Segment Identifier"  # Reemplaza "Your Segment Identifier" con el identificador de segmento real.
-
-# Configurar el título de la página con el identificador de segmento ingresado por el usuario
-st.set_page_config(layout='centered', page_title=f'{app_name} {__version__} | {segment_identifier}')
 
 # BOILERPLATE
-ss = st.session_state
-if 'debug' not in ss: ss['debug'] = {}
+st.set_page_config(layout='centered', page_title=f'{app_name} {__version__}')
+
 import css
 st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 header1 = st.empty() # for errors / messages
@@ -307,26 +303,25 @@ def output_add(q,a):
 # LAYOUT
 
 with st.sidebar:
-	ui_info()
-	ui_spacer(2)
+    ui_info()
+    ui_spacer(2)
 
-	# Pedir al usuario que ingrese el identificador de segmento
-	segment_identifier = st.text_input("Identificador de segmento", "Ingrese su identificador aquí")
+    # Pedir al usuario que ingrese el identificador de segmento
+    segment_identifier = st.text_input("Identificador de segmento", "Ingrese su identificador aquí")
 
-	with st.expander('advanced'):
-		ui_show_debug()
-		b_clear()
-		ui_model()
-		ui_fragments()
-		ui_fix_text()
-		ui_hyde()
-		ui_hyde_summary()
-		ui_temperature()
-		b_reload()
-		ui_task_template()
-		ui_task()
-		ui_hyde_prompt()
-
+    with st.expander('Opciones avanzadas'):
+        ui_show_debug()
+        b_clear()
+        ui_model()
+        ui_fragments()
+        ui_fix_text()
+        ui_hyde()
+        ui_hyde_summary()
+        ui_temperature()
+        b_reload()
+        ui_task_template()
+        ui_task()
+        ui_hyde_prompt()
 
 ui_api_key()
 ui_pdf_file()
