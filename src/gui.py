@@ -302,6 +302,8 @@ def output_add(q,a):
 
 # LAYOUT
 
+ss = st.session_state
+
 with st.sidebar:
     ui_info()
     ui_spacer(2)
