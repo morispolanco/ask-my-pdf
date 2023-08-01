@@ -201,104 +201,54 @@ def ui_output():
 	st.markdown(output)
 
 def ui_debug():
-	if ss.get('show_debug'):
-		st.write('### debug')
-		st.write(ss.get('debug',{}))
+    if ss.get('show_debug'):
+        st.write('### debug')
+        st.write(ss.get('debug',{}))
 
 
 def b_ask():
-	c1,c2,c3,c4,c5 = st.columns([2,1,1,2,2])
-	if c2.button('👍', use_container_width=True, disabled=not ss.get('output')):
-		ss['feedback'].send(+1, ss, details=ss['send_details'])
-		ss['feedback_score'] = ss['feedback'].get_score()
-	if c3.button('👎', use_container_width=True, disabled=not ss.get('output')):
-		ss['feedback'].send(-1, ss, details=ss['send_details'])
-		ss['feedback_score'] = ss['feedback'].get_score()
-	score = ss.get('feedback_score',0)
-	c5.write(f'feedback score: {score}')
-	c4.checkbox('send details', True, key='send_details',
-			help='allow question and the answer to be stored in the ask-my-pdf feedback database')
-	#c1,c2,c3 = st.columns([1,3,1])
-	#c2.radio('zzz',['👍',r'...',r'👎'],horizontal=True,label_visibility="collapsed")
-	#
-	disabled = (not ss.get('api_key') and not ss.get('community_pct',0)) or not ss.get('index')
-	if c1.button('get answer', disabled=disabled, type='primary', use_container_width=True):
-		question = ss.get('question','')
-		temperature = ss.get('temperature', 0.0)
-		hyde = ss.get('use_hyde')
-		hyde_prompt = ss.get('hyde_prompt')
-		if ss.get('use_hyde_summary'):
-			summary = ss['index']['summary']
-			hyde_prompt += f" Context: {summary}\n\n"
-		task = ss.get('task')
-		max_frags = ss.get('max_frags',1)
-		n_before = ss.get('n_frag_before',0)
-		n_after  = ss.get('n_frag_after',0)
-		index = ss.get('index',{})
-		with st.spinner('preparing answer'):
-			resp = model.query(question, index,
-					task=task,
-					temperature=temperature,
-					hyde=hyde,
-					hyde_prompt=hyde_prompt,
-					max_frags=max_frags,
-					limit=max_frags+2,
-					n_before=n_before,
-					n_after=n_after,
-					model=ss['model'],
-				)
-		usage = resp.get('usage',{})
-		usage['cnt'] = 1
-		ss['debug']['model.query.resp'] = resp
-		ss['debug']['resp.usage'] = usage
-		ss['debug']['model.vector_query_time'] = resp['vector_query_time']
-		
-		q = question.strip()
-		a = resp['text'].strip()
-		ss['answer'] = a
-		output_add(q,a)
-		st.experimental_rerun() # to enable the feedback buttons
+    # El resto del código de b_ask()...
 
 def b_clear():
-	if st.button('clear output'):
-		ss['output'] = ''
+    if st.button('clear output'):
+        ss['output'] = ''
 
 def b_reindex():
-	# TODO: disabled
-	if st.button('reindex'):
-		index_pdf_file()
+    # TODO: disabled
+    if st.button('reindex'):
+        index_pdf_file()
 
 def b_reload():
-	if st.button('reload prompts'):
-		import importlib
-		importlib.reload(prompts)
+    if st.button('reload prompts'):
+        import importlib
+        importlib.reload(prompts)
 
 def b_save():
-	db = ss.get('storage')
-	index = ss.get('index')
-	name = ss.get('filename')
-	api_key = ss.get('api_key')
-	disabled = not api_key or not db or not index or not name
-	help = "The file will be stored for about 90 days. Available only when using your own API key."
-	if st.button('save encrypted index in ask-my-pdf', disabled=disabled, help=help):
-		with st.spinner('saving to ask-my-pdf'):
-			db.put(name, index)
+    db = ss.get('storage')
+    index = ss.get('index')
+    name = ss.get('filename')
+    api_key = ss.get('api_key')
+    disabled = not api_key or not db or not index or not name
+    help = "The file will be stored for about 90 days. Available only when using your own API key."
+    if st.button('save encrypted index in ask-my-pdf', disabled=disabled, help=help):
+        with st.spinner('saving to ask-my-pdf'):
+            db.put(name, index)
 
 def b_delete():
-	db = ss.get('storage')
-	name = ss.get('selected_file')
-	# TODO: confirm delete
-	if st.button('delete from ask-my-pdf', disabled=not db or not name):
-		with st.spinner('deleting from ask-my-pdf'):
-			db.delete(name)
-		#st.experimental_rerun()
+    db = ss.get('storage')
+    name = ss.get('selected_file')
+    # TODO: confirm delete
+    if st.button('delete from ask-my-pdf', disabled=not db or not name):
+        with st.spinner('deleting from ask-my-pdf'):
+            db.delete(name)
+        #st.experimental_rerun()
 
 def output_add(q,a):
-	if 'output' not in ss: ss['output'] = ''
-	q = q.replace('$',r'\$')
-	a = a.replace('$',r'\$')
-	new = f'#### {q}\n{a}\n\n'
-	ss['output'] = new + ss['output']
+    if 'output' not in ss: ss['output'] = ''
+    q = q.replace('$',r'\$')
+    a = a.replace('$',r'\$')
+    new = f'#### {q}\n{a}\n\n'
+    ss['output'] = new + ss['output']
 
 # LAYOUT
 
